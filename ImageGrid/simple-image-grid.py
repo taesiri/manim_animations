@@ -41,7 +41,7 @@ class ImageToGrid(Scene):
         # Slice the image into 9 patches using torchvision.transforms and the crop_at function
         img = Image.open(img_path)
 
-        zoom_scales = [256, 512, 768, 1024]
+        zoom_scales = [256, 368, 480, 512, 768, 1024]
 
         patch_mobs = []
         for i in range(3):
@@ -136,8 +136,10 @@ class ImageToGrid(Scene):
                     new_patch_mobs.append(patch_mob)
 
             # Animate transition to new patches
-            self.play(*[FadeOut(old) for old in patch_mobs], run_time=0.5)
-            self.play(*[FadeIn(new) for new in new_patch_mobs], run_time=0.5)
+            animations = [
+                Transform(old, new) for old, new in zip(patch_mobs, new_patch_mobs)
+            ]
+            self.play(*animations, run_time=1)
             patch_mobs = new_patch_mobs
 
         self.wait()
