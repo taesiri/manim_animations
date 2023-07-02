@@ -30,7 +30,7 @@ class ImageToGrid(Scene):
         self.camera.background_color = WHITE
 
         # Load the image
-        img_path = "photo.jpeg"
+        img_path = "0.006348_mosque _ mosque_0.8925721.jpg"
         img_obj = ImageMobject(img_path)
         img_obj.scale_to_fit_height(5)
 
@@ -41,7 +41,7 @@ class ImageToGrid(Scene):
         # Slice the image into 9 patches using torchvision.transforms and the crop_at function
         img = Image.open(img_path)
 
-        zoom_scales = [256, 368, 480, 512, 768, 1024]
+        zoom_scales = [256, 280, 320, 380, 420, 480, 520, 580]
 
         patch_mobs = []
         for i in range(3):
